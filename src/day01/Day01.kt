@@ -3,17 +3,17 @@ package day01
 import java.io.File
 
 fun main() {
+    fun parseInput(input: String) = input.split("\n\n").map { str ->
+        str.lines().sumOf { it.toInt() }
+    }
+
     fun part1(input: String): Int {
-        val data = input.split("\n\n").map {str ->
-            str.lines().sumOf { it.toInt() }
-        }
+        val data = parseInput(input)
         return data.max()
     }
 
     fun part2(input: String): Int {
-        val data = input.split("\n\n").map {str ->
-            str.lines().sumOf { it.toInt() }
-        }
+        val data = parseInput(input)
         return data.sortedDescending().take(3).sum()
     }
 
