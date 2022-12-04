@@ -4,17 +4,19 @@ import java.io.File
 
 fun main() {
     fun parseInput(input: String) = input.split("\n\n").map { str ->
-        str.lines().sumOf { it.toInt() }
+        str.lines().map { it.toInt() }
     }
+
+    fun List<List<Int>>.topNElves(n: Int): Int = map { it.sum() }.sortedDescending().take(n).sum()
 
     fun part1(input: String): Int {
         val data = parseInput(input)
-        return data.max()
+        return data.topNElves(1)
     }
 
     fun part2(input: String): Int {
         val data = parseInput(input)
-        return data.sortedDescending().take(3).sum()
+        return data.topNElves(3)
     }
 
     // test if implementation meets criteria from the description, like:
