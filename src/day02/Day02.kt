@@ -27,11 +27,11 @@ fun main() {
 
     fun part2(input: String): Int {
         val data = parseInput(input)
-            .map {(first, second) ->
-                when(second){
-                    "Z" -> first to (winsPlayer.toMap()[first] ?: first)
-                    "Y" -> first to (drawPlayer.toMap()[first] ?: first)
-                    else -> first to (lossPlayer.toMap()[first] ?: first)
+            .map { (first, second) ->
+                when (second) {
+                    "Z" -> winsPlayer.first { it.first == first }
+                    "Y" -> drawPlayer.first { it.first == first }
+                    else -> lossPlayer.first { it.first == first }
                 }
             }
             .fold(0) { acc, pair ->
